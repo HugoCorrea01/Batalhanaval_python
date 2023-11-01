@@ -1,0 +1,42 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jogo de Batalha Naval</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Jogo de Batalha Naval</h1>
+
+    <h2>Tabuleiro:</h2>
+    <table>
+        {% for linha in tabuleiro %}
+            <tr>
+                {% for celula in linha %}
+                    <td>{{ celula }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Fazer uma jogada:</h2>
+    <form method="POST" action="/jogada">
+        <label for="x">Linha (0-4):</label>
+        <input type="number" name="x" min="0" max="4">
+        <label for="y">Coluna (0-4):</label>
+        <input type="number" name="y" min="0" max="4">
+        <button type="submit">Atacar</button>
+    </form>
+    
+
+    {% if resultado is defined %}
+        <h2>Resultado:</h2>
+        {% if resultado %}
+            <p>Você acertou um navio!</p>
+        {% else %}
+            <p>Você errou o tiro.</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

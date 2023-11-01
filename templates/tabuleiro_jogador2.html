@@ -1,0 +1,28 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuleiro do Jogador 2</title>
+</head>
+<body>
+    <h1>Tabuleiro do Jogador 2:</h1>
+    {% if mensagem %}
+        <p>{{ mensagem }}</p>
+    {% endif %}
+    <pre>
+    {{ tabuleiro | safe }}
+    </pre>
+    <a href="/tabuleiro" class="voltar-tabuleiro">Voltar para o Tabuleiro do Jogador 1</a>
+
+    <form method="POST" action="/ataque_jogador2">
+        <label for="x">Linha (0-4):</label>
+        <input type="number" name="x" min="0" max="4" required>
+        <label for="y">Coluna (0-4):</label>
+        <input type="number" name="y" min="0" max="4" required>
+        <button type="submit">Atacar</button>
+    </form>
+</body>
+</html>
